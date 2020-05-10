@@ -1,3 +1,4 @@
+import PageTemplate from '@components/base/PageTemplate';
 import { CacheProvider } from '@emotion/core';
 import { store } from '@stores';
 import globalStyles from '@styles/global';
@@ -19,7 +20,9 @@ export default class MyApp extends NextApp {
       <Provider store={store}>
         <CacheProvider value={cache}>
           {globalStyles}
-          <Component {...pageProps} />
+          <PageTemplate>
+            <Component {...pageProps} />
+          </PageTemplate>
         </CacheProvider>
       </Provider>
     );
