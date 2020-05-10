@@ -19,8 +19,7 @@ const IndexPage: NextPage = () => {
   return (
     <PageTemplate>
       <Head>
-        <title>Home! use title tag22</title>
-        {/* <link rel="icon" href="/favicon.ico" /> */}
+        <title>Home! use title tag</title>
       </Head>
       <Clock />
       <Counter />

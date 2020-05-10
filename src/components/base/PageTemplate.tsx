@@ -1,32 +1,27 @@
-// import Header from './Header';
-// import FloatingHeader from './FloatingHeader';
-
 import { NextPage } from 'next';
 import { ReactNode } from 'react';
 
-// const PageTemplateBlock = styled.div``;
+import Header from './Header';
 
 interface PageTemplateProps {
-  // hideHeader?: boolean;
+  hideHeader?: boolean;
   style?: React.CSSProperties;
   className?: string;
   children: ReactNode;
 }
 
 const PageTemplate: NextPage<PageTemplateProps> = ({
-  // hideHeader,
+  hideHeader,
   style,
   className,
   children,
 }) => (
   <div style={style} className={className}>
-    {/* {!hideHeader && ( */}
-    <>
-      {/* <Header /> */}
-      {/* <FloatingHeader /> */}
-      test 안녕하세요!
-    </>
-    {/* )} */}
+    {!hideHeader && (
+      <>
+        <Header />
+      </>
+    )}
     {children}
   </div>
 );
