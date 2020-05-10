@@ -5,7 +5,7 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint --ext .js,.ts,.jsx,.tsx --ignore-path .gitignore ."
+    "lint": "eslint --ext .ts,.tsx --ignore-path .gitignore ."
   },
   "dependencies": {
     "@emotion/core": "^10.0.28",
@@ -18,7 +18,8 @@
     "react-dom": "^16.9.0",
     "react-redux": "^7.2.0",
     "redux": "^3.6.0",
-    "redux-logger": "^3.0.6"
+    "redux-logger": "^3.0.6",
+    "tsconfig-paths-webpack-plugin": "^3.2.0"
   },
   "license": "ISC",
   "devDependencies": {

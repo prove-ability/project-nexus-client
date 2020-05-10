@@ -1,12 +1,11 @@
 import { PayloadAction } from '@reduxjs/toolkit';
+import { RootState } from '@stores';
+import clock from '@stores/clock';
 import { NextPage } from 'next';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 
-import { RootState } from '../stores';
-import clock from '../stores/clock';
-
 interface UseCounterInterface {
-  count: number | undefined;
+  count: number;
   increment(): PayloadAction;
   decrement(): PayloadAction;
   reset(): PayloadAction;
@@ -17,7 +16,7 @@ function useCounter(): UseCounterInterface {
   const count = useSelector(
     ({ clock: { count } }: RootState) => count,
     shallowEqual,
-  );
+  ) as number;
   const increment = (): PayloadAction => dispatch(clock.actions.increment());
   const decrement = (): PayloadAction => dispatch(clock.actions.decrement());
   const reset = (): PayloadAction => dispatch(clock.actions.reset());
