@@ -3,6 +3,7 @@ import { NextPage } from 'next';
 import Head from 'next/head';
 import { useDispatch } from 'react-redux';
 
+import PageTemplate from '../components/base/PageTemplate';
 import Clock from '../components/clock';
 import Counter from '../components/counter';
 import useInterval from '../lib/useInterval';
@@ -16,14 +17,14 @@ const IndexPage: NextPage = () => {
     tick();
   }, 1000);
   return (
-    <>
+    <PageTemplate>
       <Head>
-        <title>Home! use title tag</title>
+        <title>Home! use title tag22</title>
         {/* <link rel="icon" href="/favicon.ico" /> */}
       </Head>
       <Clock />
       <Counter />
-    </>
+    </PageTemplate>
   );
 };
 
