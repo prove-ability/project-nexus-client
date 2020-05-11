@@ -107,6 +107,32 @@ export async function getLists(
     throw err;
   }
 }
+export async function getAddLists(
+  part = 'snippet',
+  pageToken: string,
+  maxResults = 20,
+  //part, pageToken, maxResults
+): Promise<ApiSearchResult> {
+  const url = `${prefixUrl}/search?key=${key}&pageToken=${pageToken}&part=${part}&maxResults=${maxResults}`;
+  try {
+    const searchResponse = await axios.get<SearchResult>(url);
+    let pageCount = 0;
+    const pageLinks = parseLink(searchResponse.headers.link);
+
+    if (pageLinks !== null) {
+      pageCount = getPageCount(pageLinks);
+    }
+
+    return {
+      pageLinks,
+      pageCount,
+      data: searchResponse.data,
+    };
+  } catch (err) {
+    console.log(err);
+    throw err;
+  }
+}
 
 export async function getListDetail(id: string): Promise<any> {
   const part =

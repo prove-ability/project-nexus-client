@@ -38,9 +38,12 @@ const ListHeader: NextPage<ListHeaderProps> = ({
     <div css={[ListHeaderStyles]}>
       <Tab tabItems={tabItems} tab={tab} onTab={onTab} />
       <ListSearch keyword={keyword} onChange={onChange} onSearch={onSearch} />
-      <>resultsPerPage: {resultsPerPage}</>
-      <br />
-      <>totalResults: {totalResults}</>
+      <div>
+        <div>resultsPerPage</div>
+        <div>{resultsPerPage}</div>
+        <div>totalResults</div>
+        <div>{totalResults}</div>
+      </div>
     </div>
   );
 };

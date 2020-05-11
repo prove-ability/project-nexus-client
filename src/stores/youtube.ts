@@ -1,4 +1,4 @@
-import { ApiSearchResult, CommonItem, getListDetail, getLists } from '@api/youtubeAPI';
+import { ApiSearchResult, CommonItem, getAddLists, getListDetail, getLists } from '@api/youtubeAPI';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AppThunk } from '@stores';
 
@@ -58,6 +58,7 @@ const youtube = createSlice({
       state.nextPageToken = nextPageToken;
       state.totalResults = totalResults;
       state.resultsPerPage = resultsPerPage;
+      console.log(state.tab);
       switch (state.tab) {
         case 'channel':
           items.forEach((item: CommonItem) => (state.channels[item.id.channelId] = item));
@@ -133,5 +134,16 @@ export const fetchListsDetail = (id: string): AppThunk => async (dispatch) => {
     dispatch(getListDetailFailure(err.toString()));
   }
 };
+
+// export const fetchAddLists = ({ part, pageToken, maxResults }: any): AppThunk => async (
+//   dispatch,
+// ) => {
+//   try {
+//     const lists = await getAddLists(part, pageToken, maxResults);
+//     dispatch(getListsSuccess(lists));
+//   } catch (err) {
+//     // dispatch(getListsFailure(err.toString()));
+//   }
+// };
 
 export default youtube;

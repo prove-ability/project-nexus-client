@@ -10,6 +10,7 @@ import { NextPage } from 'next';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import ListPagingnation from './ListPagingnation';
 import ListPopup from './ListPopup';
 
 export interface TabItem {
@@ -38,6 +39,9 @@ const List: NextPage = () => {
   const { tab } = useSelector((state: RootState) => state.youtube);
   const [keyword, onChange, onReset] = useInput('');
   const dispatch = useDispatch();
+  const { isLoading, error: channelsError, channels, nextPageToken } = useSelector(
+    (state: RootState) => state.youtube,
+  );
   const onTab = (keyword: string): void => {
     dispatch(setTab(keyword));
     onReset();
@@ -53,13 +57,21 @@ const List: NextPage = () => {
     dispatch(fetchLists(args));
   };
   const onPopup = (id: string): void => {
-    console.log(id);
     dispatch(fetchListsDetail(id));
     setDetailVisible(true);
   };
-  const { isLoading, error: channelsError, channels } = useSelector(
-    (state: RootState) => state.youtube,
-  );
+  const onColsePopup = (): void => {
+    setDetailVisible(false);
+  };
+  const onAdditionalRequest = (): void => {
+    const args = {
+      pageToken: nextPageToken,
+      part: 'snippet',
+      maxResults: 10,
+    };
+    // here
+    // dispatch(fetchAddLists(args));
+  };
   if (channelsError) {
     return (
       <div>
@@ -87,8 +99,9 @@ const List: NextPage = () => {
           onTab={onTab}
         />
         {renderedList}
+        <ListPagingnation onAdditionalRequest={onAdditionalRequest} />
       </div>
-      {detailVisible && <ListPopup detailVisible={detailVisible} />}
+      {detailVisible && <ListPopup detailVisible={detailVisible} onColsePopup={onColsePopup} />}
     </>
   );
 };

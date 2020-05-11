@@ -23,15 +23,28 @@ const innerPopupStyles = css`
   padding: 20px;
   border: 1px solid #888;
   width: 80%; /* Could be more or less, depending on screen size */
+  display: flex;
 `;
 const displayBolck = css`
   display: block;
 `;
+const closeBtn = css`
+  width: 100px;
+  height: 100px;
+  background-color: black;
+  color: white;
+  :hover {
+    cursor: pointer;
+    color: #333;
+    background-color: #fff;
+  }
+`;
 interface ListPopupProps {
   detailVisible: boolean;
+  onColsePopup: () => void;
 }
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const ListPopup = ({ detailVisible }: ListPopupProps) => {
+const ListPopup = ({ detailVisible, onColsePopup }: ListPopupProps) => {
   const { isLoading, error: channelDetailError, channelDetail } = useSelector(
     (state: RootState) => state.youtube,
   );
@@ -87,31 +100,33 @@ const ListPopup = ({ detailVisible }: ListPopupProps) => {
                 `,
               ]}
             />
-            <img
+            <div
               css={[
                 css`
-                  width: ${thumbnails.medium.width};
-                  height: ${thumbnails.medium.height};
-                  background-image: url(${thumbnails.medium.url});
+                  width: 900px;
                 `,
               ]}
-            />
-            <div>{title}</div>
-            <div>{description}</div>
-            <div>{publishedAt}</div>
-            <div>{country}</div>
-            <div>{viewCount}</div>
-            <div>{commentCount}</div>
-            <div>{subscriberCount}</div>
-            <div>{hiddenSubscriberCount}</div>
-            <div>{videoCount}</div>
-            <div>{keywords}</div>
-            <div>{showRelatedChannels}</div>
-            <div>{showBrowseView}</div>
-            <div>{featuredChannelsTitle}</div>
-            {_.map(featuredChannelsUrls, (featuredChannelsUrlInfo, key) => (
-              <div key={key}>{featuredChannelsUrlInfo}</div>
-            ))}
+            >
+              <div>{title}</div>
+              <div>{description}</div>
+              <div>publishedAt: {publishedAt}</div>
+              <div>country: {country}</div>
+              <div>viewCount: {viewCount}</div>
+              <div>commentCount: {commentCount}</div>
+              <div>subscriberCount: {subscriberCount}</div>
+              <div>hiddenSubscriberCount: {hiddenSubscriberCount}</div>
+              <div>videoCount: {videoCount}</div>
+              <div>keywords: {keywords}</div>
+              <div>showRelatedChannels: {showRelatedChannels}</div>
+              <div>showBrowseView: {showBrowseView}</div>
+              <div>featuredChannelsTitle: {featuredChannelsTitle}</div>
+              {_.map(featuredChannelsUrls, (featuredChannelsUrlInfo, key) => (
+                <div key={key}>{featuredChannelsUrlInfo}</div>
+              ))}
+            </div>
+            <button css={[closeBtn]} onClick={onColsePopup} onKeyDown={onColsePopup}>
+              닫기
+            </button>
           </div>
         </div>
       )}
