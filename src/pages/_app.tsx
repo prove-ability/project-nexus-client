@@ -1,6 +1,6 @@
 import PageTemplate from '@components/base/PageTemplate';
 import { CacheProvider } from '@emotion/core';
-import { store } from '@stores';
+import store from '@stores';
 import globalStyles from '@styles/global';
 import { cache } from 'emotion';
 import NextApp from 'next/app';

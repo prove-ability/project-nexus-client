@@ -1,5 +1,6 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
+/* eslint-disable @typescript-eslint/no-var-requires */
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -9,7 +10,7 @@ module.exports = {
     } else {
       config.resolve.plugins = [new TsconfigPathsPlugin()];
     }
-
+    config.plugins.push(new Dotenv({ silent: true }));
     return config;
   },
   target: 'serverless',

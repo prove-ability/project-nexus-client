@@ -1,28 +1,30 @@
 import { NextPage } from 'next';
 import { ReactNode } from 'react';
 
+import Footer from './Footer';
 import Header from './Header';
 
 interface PageTemplateProps {
   hideHeader?: boolean;
-  style?: React.CSSProperties;
   className?: string;
   children: ReactNode;
 }
 
 const PageTemplate: NextPage<PageTemplateProps> = ({
-  hideHeader,
-  style,
-  className,
+  hideHeader, // 추후 사용 예정
+  className, // 추후 사용 예정
   children,
 }) => (
-  <div style={style} className={className}>
+  <div className={className}>
     {!hideHeader && (
       <>
         <Header />
       </>
     )}
     {children}
+    <>
+      <Footer />
+    </>
   </div>
 );
 

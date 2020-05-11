@@ -12,6 +12,7 @@ export default class MyDocument extends Document<{
   ids: ReturnType<typeof extractCritical>['ids'];
   css: ReturnType<typeof extractCritical>['css'];
 }> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   static getInitialProps({ renderPage }: DocumentContext): any {
     const page = renderPage() as RenderPageResult;
     const styles = extractCritical(page.html);

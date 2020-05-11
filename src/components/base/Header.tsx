@@ -11,8 +11,7 @@ const headerStyles = css`
 
 const Header: NextPage = () => (
   <div css={[headerStyles]}>
-    test
-    <span>탭1/ 태12</span>
+    <span>Header</span>
   </div>
 );
 
